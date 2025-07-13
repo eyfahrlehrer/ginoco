@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Lehrerbereich</title>
+</head>
+<body>
+    <h1>Lehrerbereich</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    <h2>Zu prüfende Bilder</h2>
+    {% for img in images %}
+        <div>
+            <img src="{{ url_for('static', filename='uploads/' + img.filename) }}" style="max-width:200px;" />
+            <a href="{{ url_for('approve', image_id=img.id) }}">Freischalten</a>
+        </div>
+    {% else %}
+        <p>Keine neuen Bilder.</p>
+    {% endfor %}
+    <h2>Bewertungen</h2>
+    <ul>
+    {% for r in ratings %}
+        <li>Theorie: {{ r.theory }} - Fahren: {{ r.driving }}</li>
+    {% else %}
+        <li>Keine Bewertungen vorhanden.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
