@@ -1,0 +1,31 @@
++<!doctype html>
++<html lang="de">
++<head>
++    <meta charset="UTF-8">
++    <title>Fahrschule</title>
++</head>
++<body>
++    {% if current_user.is_authenticated %}
++        Eingeloggt als {{ current_user.username }} - <a href="{{ url_for('logout') }}">Logout</a>
++        {% if current_user.role == 'teacher' %}
++            | <a href="{{ url_for('teacher') }}">Lehrerbereich</a>
++        {% else %}
++            | <a href="{{ url_for('upload') }}">Bild hochladen</a>
++            | <a href="{{ url_for('rate') }}">Bewerten</a>
++            | <a href="{{ url_for('request_delete') }}">Konto löschen</a>
++        {% endif %}
++    {% else %}
++        <a href="{{ url_for('login') }}">Login</a> |
++        <a href="{{ url_for('register') }}">Registrieren</a>
++    {% endif %}
++    <h1>Bestandene Prüfungen</h1>
++    {% for img in images %}
++        <img src="{{ url_for('static', filename='uploads/' + img.filename) }}" style="max-width:200px;" />
++    {% else %}
++        <p>Keine Bilder vorhanden.</p>
++    {% endfor %}
++</body>
++</html>
+ 
+EOF
+)
