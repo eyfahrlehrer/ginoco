@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrieren</title>
+</head>
+<body>
+    <h1>Registrieren</h1>
+    <form method="post">
+        Benutzername: <input type="text" name="username" required><br>
+        Passwort: <input type="password" name="password" required><br>
+        Registrierungscode: <input type="text" name="code" required><br>
+        <label><input type="checkbox" name="accept" required> Datenschutzbestimmungen akzeptieren</label><br>
+        <button type="submit">Registrieren</button>
+    </form>
+    <a href="{{ url_for('login') }}">Bereits registriert? Login</a>
+</body>
+</html>
